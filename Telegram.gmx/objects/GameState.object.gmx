@@ -27,8 +27,10 @@
             <kind>1</kind>
             <string>/// Initialise variables
 global.morse = false;   // Is telegraph triggered?
-global.inputmorse = '';
-global.inputtext = '';
+global.inputmorse = ''; // Dots &amp; dashes entered so far for a single letter
+global.inputtext = '';  // String of text entered so far
+global.sentencesubmitted = ''; // String of text accepted as sentence
+global.ghosttext = '';  // String of text to be relayed back to the player
 
 t1 = -1;                // Time since last input ended
 t2 = -1;                // Time since input started
@@ -40,8 +42,10 @@ resetmin = 60;          // Minimum number of frames to reset previous letter
 
 letterconfirm = 30;     // Number of frames to wait to confirm letter
 wordconfirm = 60;       // Number of frames to wait to confirm word
-
+sentenceconfirm = 150;  // Number of frames to wait to confirm sentence
 keyrelease = false;
+
+instance_create(0, 0, obj_marker);
 </string>
           </argument>
         </arguments>
@@ -187,24 +191,38 @@ if ( t2 &gt;= 0 ) {
 // Purpose: Trigger end of word if t3 &gt; wordconfirm.
 if ( t3 &gt;= 0 ) {
     t3++;
-    if ( t3 &gt; wordconfirm ) {
-        show_debug_message("Checking for end of word");        
+    if ( t3 &gt; wordconfirm ) {      
         
         // Check if last letter is not a space
         var strlen = string_length(global.inputtext);
         if ( string_char_at(global.inputtext, strlen) != ' ' ) {
+            show_debug_message("Checking for end of word");
             // Add space to inputtext
             if ( global.inputtext != '' ) {
                 show_debug_message("Word is " + global.inputtext);
                 global.inputmorse = '';
                 global.inputtext = global.inputtext + ' ';
             }
+            // Reset timers;
+            t1 = -1;
+            t2 = -1;
         }
         
-        // Reset timers;
-        t1 = -1;
-        t2 = -1;
-        t3 = -1;
+        // If last letter is a space, keep timer t3 running to check for end of sentence
+        if ( t3 &gt; sentenceconfirm ) {
+            show_debug_message("End of sentence: " + global.inputtext);
+            // Parse sentence
+            scr_parse(global.inputtext);
+            
+            // Reset timers &amp; inputtext;
+            t1 = -1;
+            t2 = -1;
+            t3 = -1;
+            global.inputmorse = '';
+            global.inputtext = '';
+         
+        }
+        
     }   
 }
 </string>

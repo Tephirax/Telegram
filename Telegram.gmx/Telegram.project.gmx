@@ -3,22 +3,29 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles"/>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_morsesheet</sprite>
     <sprite>sprites\spr_telegraph</sprite>
+    <sprite>sprites\spr_marker</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_checkmorse.gml</script>
+    <script>scripts\scr_parse.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font_uwch</font>
+  </fonts>
   <objects name="objects">
     <object>objects\GameState</object>
     <object>objects\obj_morsesheet</object>
     <object>objects\obj_telegraph</object>
     <object>objects\obj_display</object>
+    <object>objects\obj_marker</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_desk</room>
