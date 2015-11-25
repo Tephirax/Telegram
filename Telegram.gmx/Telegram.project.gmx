@@ -16,6 +16,7 @@
   <scripts name="scripts">
     <script>scripts\scr_checkmorse.gml</script>
     <script>scripts\scr_parse.gml</script>
+    <script>scripts\scr_outputmorse.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_uwch</font>

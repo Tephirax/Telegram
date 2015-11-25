@@ -7,18 +7,21 @@ var inputtext = argument0;
 if ( (string_pos('who ', inputtext) != 0) 
   || (string_pos('what', inputtext) != 0 && string_pos('name ', inputtext) != 0)) {
     show_debug_message('Text recognised: "who" or "what...name"');
-    global.ghosttext = 'Joe. Joe Smith.';
-    show_debug_message(global.ghosttext);
+    global.outputtext = 'sam';
+    global.outputdelay = 60;
+    show_debug_message(global.outputtext);
 }
 // What happened to you?
 else if ( string_pos('what ', inputtext) != 0 && string_pos('happened ', inputtext) != 0 ) {
     show_debug_message('Text recognised: "what...happened"');
-    global.ghosttext = 'A bomb. I think a bomb fell. Its dark.';
-    show_debug_message(global.ghosttext);
+    global.outputtext = 'i think a bomb fell. its dark.';
+    global.outputdelay = 60;
+    show_debug_message(global.outputtext);
 }
 // Where are you?
 else if ( string_pos('where ', inputtext) != 0 && string_pos('you ', inputtext) != 0 ) {
-    show_debug_message('Text recognised: who');
-    global.ghosttext = 'Joe. Joe Smith.';
-    show_debug_message(global.ghosttext);
+    show_debug_message('Text recognised: "where...you"');
+    global.outputtext = 'the telegraph office. what day is it.';
+    global.outputdelay = 60;
+    show_debug_message(global.outputtext);
 }   

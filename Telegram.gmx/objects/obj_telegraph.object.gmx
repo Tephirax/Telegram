@@ -50,8 +50,8 @@ image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Light up light if global.morse is true
-if ( global.morse ) {
+            <string>/// Light up light if global.input or global.output is true
+if ( global.input || global.output ) {
     image_index = 1;
 } else {
     image_index = 0;
