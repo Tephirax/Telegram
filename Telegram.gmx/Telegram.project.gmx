@@ -8,8 +8,10 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_morsesheet</sprite>
+    <sprite>sprites\spr_questionsheet</sprite>
     <sprite>sprites\spr_telegraph</sprite>
     <sprite>sprites\spr_marker</sprite>
+    <sprite>sprites\sprite3</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -27,6 +29,7 @@
     <object>objects\obj_telegraph</object>
     <object>objects\obj_display</object>
     <object>objects\obj_marker</object>
+    <object>objects\obj_questionsheet</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_desk</room>

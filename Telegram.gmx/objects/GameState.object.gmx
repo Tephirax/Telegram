@@ -35,11 +35,13 @@ global.outputtext = 'sos';  // String of text to be relayed back to the player
 global.outputmorse = ''; // Dots &amp; dashes converted from outputtext
 global.outputdelay = round(random(160)) + 80;
 global.playmessage = false; // Should ghosttext be displayed
+global.silence = false; // Has there been silence since the last response
 
 t1 = -1;                // Time since last input ended
 t2 = -1;                // Time since input started
 t3 = -1;                // Time after letter confirmed, before next input
 t4 = 0;                 // Time since all other timers were deactivated: counts up to global.ghostdelay
+t5 = -1;                // Time with no input after response
 
 dotmin = 0;             // Minimum number of frames to be considered a dot
 dashmin = 10;           // Minimum number of frames to be considered a dash
@@ -54,6 +56,10 @@ wordconfirm = 60;       // Number of frames to wait to confirm word
 sentenceconfirm = 150;  // Number of frames to wait to confirm sentence
 keyrelease = false;
 nextchar = false;       // Flag to move on to next character in output
+
+moderatesilence = 450;  // Idle text if no response is given for 15 seconds
+longsilence = 900;      // Idle text if no response is given for 30 seconds
+extsilence = 300;       // Idle text if no response is given every 10 seconds after 45 seconds
 
 instance_create(0, 0, obj_marker);
 </string>
@@ -78,7 +84,7 @@ instance_create(0, 0, obj_marker);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Reset nextchar flag after displaying dot
+            <string>/// Reset nextchar flag after displaying dash
 // Use alarm twice:
 // 1) When light is on, switch off light
 if ( global.output ) {
@@ -207,12 +213,16 @@ else {
         }
     }
     else if ( keyboard_check(vk_space) ) {
+        global.outputtext = '';
+        global.outputmorse = '';
         global.input = true;
         global.playmessage = false;
+        global.silence = false;
         if ( t2 == -1 ) {
             // Reset timers t1 &amp; t3
             t1 = -1;
             t3 = -1;
+            t5 = -1;
         
             // Start timer t2
             t2 = 0;
@@ -265,6 +275,7 @@ if ( t1 &gt;= 0 ) {
         t1 = -1;
         t2 = -1;
         t3 = 0;
+        t5 = -1;
     }
 }
 
@@ -278,9 +289,11 @@ if ( t2 &gt;= 0 ) {
         if ( strlen &gt; 0 ) {
             global.inputtext = string_delete(global.inputtext, strlen, 1);
             show_debug_message("Delete last character. inputtext is now: " + global.inputtext);
+            global.inputmorse = '';
         }
         // Reset timer;
         t2 = -1;
+        t5 = -1;
         
         // Flag keyrelease = true, to prevent timer immediately refiring
         keyrelease = true;
@@ -327,7 +340,7 @@ if ( t3 &gt;= 0 ) {
 }
 // t4 - If all other timers are deactivated, increment t4.
 // Purpose: Trigger ghost response when t4 = global.outputdelay
-if ( t1 == -1 &amp;&amp; t2 == -1 &amp;&amp; t3 == -1 &amp;&amp; !global.playmessage ) {
+if ( t1 == -1 &amp;&amp; t2 == -1 &amp;&amp; t3 == -1 &amp;&amp; !global.playmessage &amp;&amp; !global.silence) {
     t4++;
     if ( t4 == global.outputdelay ) {
         show_debug_message('Start output message');
@@ -336,6 +349,31 @@ if ( t1 == -1 &amp;&amp; t2 == -1 &amp;&amp; t3 == -1 &amp;&amp; !global.playmes
         
         // Reset timer
         t4 = -1;
+    }
+}
+
+// t5 - If message has been output, but no response has been given 
+// after a significant period, transmit a plea for help
+if ( t5 &gt;= 0 &amp;&amp; global.silence ) {
+    t5++;
+    if ( t5 == moderatesilence ) {
+        global.outputtext = 'are you still there';
+        global.outputdelay = 1;  
+        global.silence = false;
+        t4 = 0;    
+    }
+    else if ( t5 == longsilence ) {
+        global.outputtext = 'oh god dont leave me here alone';
+        global.outputdelay = 1;
+        global.silence = false;
+        t4 = 0;
+    }
+    else if ( t5 &gt;= moderatesilence + longsilence &amp;&amp; t5 mod extsilence == 0 ) {
+        global.outputtext = 'please';
+        global.outputdelay = 1;
+        global.silence = false;
+        t4 = 0;
+        
     }
 }
 </string>
@@ -398,8 +436,12 @@ if ( global.playmessage ) {
         else {
             global.playmessage = false;
             nextchar = false;
-            outputmorse = '';
-            outputdelay = round(random(100) + 80); // Number of frames before message is repeated            
+            outputmorse = '';  
+            global.outputdelay = -1; // Don't play message again
+            
+            // Set flag for t5 timer
+            if ( t5 = -1 ) { t5 = 0; }
+            global.silence = true;
         }
     }
 }
