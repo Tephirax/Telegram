@@ -12,6 +12,10 @@
     <sprite>sprites\spr_telegraph</sprite>
     <sprite>sprites\spr_marker</sprite>
     <sprite>sprites\sprite3</sprite>
+    <sprite>sprites\spr_leftarrow</sprite>
+    <sprite>sprites\spr_rightarrow</sprite>
+    <sprite>sprites\spr_spacebar</sprite>
+    <sprite>sprites\spr_pressspace</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -22,6 +26,8 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_uwch</font>
+    <font>fonts\font_uwch_title</font>
+    <font>fonts\font_uwch_small</font>
   </fonts>
   <objects name="objects">
     <object>objects\GameState</object>
@@ -30,10 +36,12 @@
     <object>objects\obj_display</object>
     <object>objects\obj_marker</object>
     <object>objects\obj_questionsheet</object>
+    <object>objects\obj_titlescreen</object>
+    <object>objects\obj_introscreen</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_desk</room>
     <room>rooms\rm_title</room>
+    <room>rooms\rm_desk</room>
     <room>rooms\rm_intro</room>
   </rooms>
   <help>

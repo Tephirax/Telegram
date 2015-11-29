@@ -16,6 +16,11 @@ else if ( (string_pos('hello', inputtext) != 0)
     global.outputtext = 'thank god';
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
+
+    // Remove from ds_list
+    var listpos = ds_list_find_index(global.questionlist, 'hello');
+    ds_list_delete(global.questionlist, listpos);
+    global.listsize = ds_list_size(global.questionlist);  
 }
 // Who are you? / What's your name?
 else if ( (string_pos('who ', inputtext) != 0) 
@@ -24,6 +29,11 @@ else if ( (string_pos('who ', inputtext) != 0)
     global.outputtext = 'sam';
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
+    
+    // Remove from ds_list
+    var listpos = ds_list_find_index(global.questionlist, 'who are you');
+    ds_list_delete(global.questionlist, listpos);
+    global.listsize = ds_list_size(global.questionlist);
 }
 // What happened to you?
 else if ( string_pos('what ', inputtext) != 0 && string_pos('happened ', inputtext) != 0 ) {
@@ -31,6 +41,11 @@ else if ( string_pos('what ', inputtext) != 0 && string_pos('happened ', inputte
     global.outputtext = 'a bomb fell. i blacked out';
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
+    
+    // Remove from ds_list
+    var listpos = ds_list_find_index(global.questionlist, 'what happened');
+    ds_list_delete(global.questionlist, listpos);
+    global.listsize = ds_list_size(global.questionlist);
 }
 // Where are you?
 else if ( string_pos('where ', inputtext) != 0 && string_pos('you ', inputtext) != 0 ) {
@@ -38,6 +53,11 @@ else if ( string_pos('where ', inputtext) != 0 && string_pos('you ', inputtext) 
     global.outputtext = 'the telegraph office. what day is it';
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
+    
+    // Remove from ds_list
+    var listpos = ds_list_find_index(global.questionlist, 'where are you');
+    ds_list_delete(global.questionlist, listpos);
+    global.listsize = ds_list_size(global.questionlist);
 }
 // 2015
 else if ( string_pos('2015', inputtext) != 0 || string_pos('2016', inputtext) != 0 ) {

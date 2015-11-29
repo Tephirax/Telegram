@@ -442,6 +442,27 @@ if ( global.playmessage ) {
             // Set flag for t5 timer
             if ( t5 = -1 ) { t5 = 0; }
             global.silence = true;
+            
+            // Update ds_list questionlist with new suggested questions
+            if ( global.outputtext == 'thank god' ) {
+                if ( ds_list_find_index(global.questionlist, 'who are you') == -1 ) { 
+                    ds_list_insert(global.questionlist, global.listsize - 1, 'who are you');
+                    global.listsize = ds_list_size(global.questionlist);
+                }
+            }
+            else if ( global.outputtext == 'sam' ) {
+                if ( ds_list_find_index(global.questionlist, 'what happened') == -1 ) { 
+                    ds_list_insert(global.questionlist, global.listsize - 1, 'what happened');
+                    global.listsize = ds_list_size(global.questionlist);
+                }
+            }
+            else if ( global.outputtext == 'a bomb fell. i blacked out' ) {
+                if ( ds_list_find_index(global.questionlist, 'where are you') == -1 ) {     
+                    ds_list_insert(global.questionlist, global.listsize - 1, 'where are you');
+                    global.listsize = ds_list_size(global.questionlist);
+                }
+            }
+            
         }
     }
 }
