@@ -5,7 +5,9 @@
   </Configs>
   <datafiles number="1" name="datafiles"/>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_morse</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_morsesheet</sprite>
     <sprite>sprites\spr_questionsheet</sprite>
@@ -16,8 +18,11 @@
     <sprite>sprites\spr_rightarrow</sprite>
     <sprite>sprites\spr_spacebar</sprite>
     <sprite>sprites\spr_pressspace</sprite>
+    <sprite>sprites\spr_key</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_desk</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_checkmorse.gml</script>

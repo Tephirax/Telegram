@@ -6,14 +6,24 @@ var inputtext = argument0;
 // Repeat previous message
 if ( (string_pos('repeat', inputtext) != 0)) {
     show_debug_message('Text recognised: "repeat"');
+    global.outputtext = global.prevoutput;
     global.outputdelay = 60; // Frames until message display begins
     show_debug_message(global.outputtext);    
+}
+// SOS
+else if ( (string_pos('sos', inputtext) != 0) ) {
+    show_debug_message('Text recognised: "sos"');
+    global.outputtext = 'is someone there. whats wrong';
+    global.prevoutput = global.outputtext;
+    global.outputdelay = 60;
+    show_debug_message(global.outputtext);
 }
 // Hello/Hi
 else if ( (string_pos('hello', inputtext) != 0) 
   || (string_pos('hi ', inputtext) != 0)) {
     show_debug_message('Text recognised: "hello" or "hi"');
     global.outputtext = 'thank god';
+    global.prevoutput = global.outputtext;
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
 
@@ -27,6 +37,7 @@ else if ( (string_pos('who ', inputtext) != 0)
   || (string_pos('what', inputtext) != 0 && string_pos('name ', inputtext) != 0)) {
     show_debug_message('Text recognised: "who" or "what...name"');
     global.outputtext = 'sam';
+    global.prevoutput = global.outputtext;
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
     
@@ -39,6 +50,7 @@ else if ( (string_pos('who ', inputtext) != 0)
 else if ( string_pos('what ', inputtext) != 0 && string_pos('happened ', inputtext) != 0 ) {
     show_debug_message('Text recognised: "what...happened"');
     global.outputtext = 'a bomb fell. i blacked out';
+    global.prevoutput = global.outputtext;
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
     
@@ -51,6 +63,7 @@ else if ( string_pos('what ', inputtext) != 0 && string_pos('happened ', inputte
 else if ( string_pos('where ', inputtext) != 0 && string_pos('you ', inputtext) != 0 ) {
     show_debug_message('Text recognised: "where...you"');
     global.outputtext = 'the telegraph office. what day is it';
+    global.prevoutput = global.outputtext;
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
     
@@ -63,6 +76,7 @@ else if ( string_pos('where ', inputtext) != 0 && string_pos('you ', inputtext) 
 else if ( string_pos('2015', inputtext) != 0 || string_pos('2016', inputtext) != 0 ) {
     show_debug_message('Text recognised: "2015" or "2016"');
     global.outputtext = 'i dont understand. its 1915';
+    global.prevoutput = global.outputtext;
     global.outputdelay = 60;
     show_debug_message(global.outputtext);
 } 

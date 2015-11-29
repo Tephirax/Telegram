@@ -43,17 +43,49 @@ t3 = -1;                // Time after letter confirmed, before next input
 t4 = 0;                 // Time since all other timers were deactivated: counts up to global.ghostdelay
 t5 = -1;                // Time with no input after response
 
-dotmin = 0;             // Minimum number of frames to be considered a dot
-dashmin = 10;           // Minimum number of frames to be considered a dash
-resetmin = 60;          // Minimum number of frames to reset previous letter
-dotoutput = 8;          // Number of frames to display as a dot
-dashoutput = 18;        // Number of frames to display as a dash
-interdelay = 8;         // Number of frames to leave between dots/dashes
-letterdelay = 22;       // Number of frames to leave between letters (x2 between words)
+// Difficulty: Beginner
+if ( global.difficulty == 1 ) {
+    dotmin = 0;             // Minimum number of frames to be considered a dot
+    dashmin = 10;           // Minimum number of frames to be considered a dash
+    resetmin = 60;          // Minimum number of frames to reset previous letter
+    dotoutput = 6;          // Number of frames to display as a dot
+    dashoutput = 12;        // Number of frames to display as a dash
+    interdelay = 6;         // Number of frames to leave between dots/dashes
+    letterdelay = 14;       // Number of frames to leave between letters (x2 between words)
 
-letterconfirm = 30;     // Number of frames to wait to confirm letter
-wordconfirm = 60;       // Number of frames to wait to confirm word
-sentenceconfirm = 150;  // Number of frames to wait to confirm sentence
+    letterconfirm = 30;     // Number of frames to wait to confirm letter
+    wordconfirm = 60;       // Number of frames to wait to confirm word
+    sentenceconfirm = 150;  // Number of frames to wait to confirm sentence
+}
+// Difficulty: Experienced
+if ( global.difficulty == 2 ) {
+    dotmin = 0;             // Minimum number of frames to be considered a dot
+    dashmin = 7;           // Minimum number of frames to be considered a dash
+    resetmin = 30;          // Minimum number of frames to reset previous letter
+    dotoutput = 3;          // Number of frames to display as a dot
+    dashoutput = 8;        // Number of frames to display as a dash
+    interdelay = 4;         // Number of frames to leave between dots/dashes
+    letterdelay = 11;       // Number of frames to leave between letters (x2 between words)
+
+    letterconfirm = 15;     // Number of frames to wait to confirm letter
+    wordconfirm = 45;       // Number of frames to wait to confirm word
+    sentenceconfirm = 60;  // Number of frames to wait to confirm sentence
+}
+// Difficulty: Veteran
+if ( global.difficulty == 3 ) {
+    dotmin = 0;             // Minimum number of frames to be considered a dot
+    dashmin = 4;           // Minimum number of frames to be considered a dash
+    resetmin = 20;          // Minimum number of frames to reset previous letter
+    dotoutput = 1;          // Number of frames to display as a dot
+    dashoutput = 3;        // Number of frames to display as a dash
+    interdelay = 2;         // Number of frames to leave between dots/dashes
+    letterdelay = 7;       // Number of frames to leave between letters (x2 between words)
+
+    letterconfirm = 10;     // Number of frames to wait to confirm letter
+    wordconfirm = 30;       // Number of frames to wait to confirm word
+    sentenceconfirm = 45;  // Number of frames to wait to confirm sentence
+}
+
 keyrelease = false;
 nextchar = false;       // Flag to move on to next character in output
 

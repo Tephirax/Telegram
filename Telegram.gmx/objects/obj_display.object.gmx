@@ -50,10 +50,10 @@ textinprogress = '';
           <argument>
             <kind>1</kind>
             <string>/// Draw text
-draw_set_color(c_black);
+draw_set_color(c_white);
 draw_set_font(font_uwch);
-draw_text_ext(100, 100, global.inputmorse, 1, 500);
-draw_text_ext(100, 150, global.inputtext, 1, 500);
+draw_text_ext(100, 300, global.inputmorse, 1, 500);
+draw_text_ext(100, 350, global.inputtext, 1, 500);
 </string>
           </argument>
         </arguments>

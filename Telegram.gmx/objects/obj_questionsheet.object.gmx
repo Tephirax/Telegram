@@ -28,6 +28,8 @@
             <string>/// Initialise ds_list
 global.questionlist = ds_list_create();
 
+visible = global.questions;
+
 ds_list_add(global.questionlist, 'hello');
 ds_list_add(global.questionlist, 'who are you');
 ds_list_add(global.questionlist, 'repeat');
